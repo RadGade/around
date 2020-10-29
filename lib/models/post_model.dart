@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
 
 class Post {
-  final String title;
-  final String imageUrl;
-  final String userId;
-  final Map postion;
-  final String documentId;
+  String title;
+  String imageUrl;
+  String userId;
+  Map postion;
+  String documentId;
 
   Post({
     @required this.userId,

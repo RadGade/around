@@ -1,3 +1,5 @@
+import 'package:compound/constants/route_names.dart';
+import 'package:compound/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:compound/viewmodels/camera_model.dart';
@@ -6,6 +8,8 @@ import 'package:camera/camera.dart';
 import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
+
+import '../../locator.dart';
 
 class CameraView extends StatefulWidget {
   CameraView({Key key, this.controller}) : super(key: key);
@@ -20,6 +24,7 @@ class CameraView extends StatefulWidget {
 }
 
 class CameraViewState extends State<CameraView> {
+  final NavigationService _navigationService = locator<NavigationService>();
   CameraController _controller;
   Future<void> _controllerInizializer;
   double cameraHorizontalPosition = 0;
@@ -171,8 +176,10 @@ class CameraViewState extends State<CameraView> {
                             color: Colors.white,
                           ),
                         ),
-                        Container(
-                          height: widget.iconHeight,
+                        GestureDetector(
+                          onTap: () {
+                            _navigationService.navigateTo(HomeViewRoute);
+                          },
                           child: Icon(
                             Icons.tag_faces,
                             color: Colors.white,
@@ -211,7 +218,27 @@ class CameraViewState extends State<CameraView> {
               ),
             ),
           ),
-        )
+        ),
+        Positioned(
+          top: 50,
+          left: 20,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Container(
+                  height: 30,
+                  child: GestureDetector(
+                    onTap: () {
+                      _navigationService.navigateTo(RootViewRoute);
+                    },
+                    child: Icon(
+                      Icons.close,
+                      color: Colors.white,
+                    ),
+                  )),
+            ],
+          ),
+        ),
       ],
     );
   }

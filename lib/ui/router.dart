@@ -1,3 +1,4 @@
+import 'package:compound/ui/views/camera_view.dart';
 import 'package:compound/ui/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:compound/constants/route_names.dart';
@@ -21,6 +22,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(
         routeName: settings.name,
         viewToShow: HomeView(),
+      );
+    case CameraViewRoute:
+      return _getPageRoute(
+        routeName: settings.name,
+        viewToShow: CameraView(),
       );
     case RootViewRoute:
       return _getPageRoute(

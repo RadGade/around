@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/post_model.dart';
 import 'package:rxdart/rxdart.dart';
@@ -7,25 +9,27 @@ import 'package:location/location.dart';
 import 'package:geoflutterfire/geoflutterfire.dart';
 
 class GeoFirestoreService {
+  FirebaseAuth auth = FirebaseAuth.instance;
+
   final CollectionReference _postsCollectionReference =
       Firestore.instance.collection("posts");
   final Location location = new Location();
   // ignore: close_sinks
   final radius = 100.0;
   final Geoflutterfire geo = Geoflutterfire();
+
   final StreamController<List<Post>> _postsController =
       StreamController<List<Post>>.broadcast();
 
-  Future addPost(Post post) async {
-    try {
-      await _postsCollectionReference.add(post.toMap());
-    } catch (e) {
-      if (e is PlatformException) {
-        return e.message;
-      }
+  Future<DocumentReference> addPost(Post post) async {
+    final User user = auth.currentUser;
+    var pos = await location.getLocation();
+    GeoFirePoint point =
+        geo.point(latitude: pos.latitude, longitude: pos.longitude);
 
-      return e.toString();
-    }
+    post.postion = await point.data;
+    post.userId = user.uid;
+    return _postsCollectionReference.add(post.toMap());
   }
 
   Future getPostsOnceOff() async {

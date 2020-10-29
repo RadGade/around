@@ -9,7 +9,7 @@ import 'package:compound/services/navigation_service.dart';
 import 'package:compound/viewmodels/base_model.dart';
 
 class HomeViewModel extends BaseModel {
-  final NavigationService _navigationService = locator<NavigationService>();
+  // final NavigationService _navigationService = locator<NavigationService>();
   final GeoFirestoreService _geofirestoreService =
       locator<GeoFirestoreService>();
   final CloudStorageService _cloudstorageService =

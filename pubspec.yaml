@@ -37,7 +37,7 @@ dependencies:
   animations: ^1.1.2
   stacked: ^1.7.1
   stacked_services: ^0.4.3
-  firebase_auth: ^0.16.1
+  firebase_auth: ^0.18.1+2
   cloud_firestore:
   location:
   geoflutterfire:
