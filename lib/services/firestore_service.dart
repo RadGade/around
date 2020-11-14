@@ -12,10 +12,14 @@ class GeoFirestoreService {
   FirebaseAuth auth = FirebaseAuth.instance;
 
   final CollectionReference _postsCollectionReference =
+      // ignore: deprecated_member_use
       Firestore.instance.collection("posts");
+  final CollectionReference _usersCollectionReference =
+      // ignore: deprecated_member_use
+      Firestore.instance.collection('users');
   final Location location = new Location();
   // ignore: close_sinks
-  final radius = 100.0;
+  final radius = 0.500;
   final Geoflutterfire geo = Geoflutterfire();
 
   final StreamController<List<Post>> _postsController =
@@ -32,8 +36,18 @@ class GeoFirestoreService {
     return _postsCollectionReference.add(post.toMap());
   }
 
+  Future createUser(User user) async {
+    try {
+      // ignore: deprecated_member_use
+      await _usersCollectionReference.document(user.uid);
+    } catch (e) {
+      return e.message;
+    }
+  }
+
   Future getPostsOnceOff() async {
     var pos = await location.getLocation();
+    print(pos);
     var imageList = [];
     var ref = Firestore.instance.collection('posts');
     GeoFirePoint center =

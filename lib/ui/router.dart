@@ -28,6 +28,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         routeName: settings.name,
         viewToShow: CameraView(),
       );
+
     case RootViewRoute:
       return _getPageRoute(
         routeName: settings.name,

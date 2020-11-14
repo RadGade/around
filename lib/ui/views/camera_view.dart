@@ -1,5 +1,6 @@
 import 'package:compound/constants/route_names.dart';
 import 'package:compound/services/navigation_service.dart';
+import 'package:compound/ui/views/preview_view.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:compound/viewmodels/camera_model.dart';
@@ -60,7 +61,7 @@ class CameraViewState extends State<CameraView> {
   @override
   void dispose() {
     // TODO: implement dispose
-    _controller.dispose();
+    _controller.dispose().then((value) => print("camera disposed"));
     super.dispose();
   }
 
@@ -112,108 +113,52 @@ class CameraViewState extends State<CameraView> {
                     right: 40,
                     left: 40,
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Container(
-                          height: widget.iconHeight,
-                          child: Icon(
-                            Icons.flash_on,
-                            color: Colors.white,
-                          ),
-                        ),
                         GestureDetector(
                           onTap: () async {
-                            // Take the Picture in a try / catch block. If anything goes wrong,
-                            // catch the error.
                             try {
-                              // Ensure that the camera is initialized.
                               await _controllerInizializer;
-                              // Construct the path where the image should be saved using the path
-                              // package.
                               final path = join(
-                                // Store the picture in the temp directory.
-                                // Find the temp directory using the `path_provider` plugin.
                                 (await getTemporaryDirectory()).path,
                                 '${DateTime.now()}.png',
                               );
                               print(path);
-                              // Attempt to take a picture and log where it's been saved.
-                              await _controller.takePicture(path);
-                              // await showDialog(
-                              //     context: context,
-                              //     builder: (_) => Preview(path));
+                              await _controller.takePicture(path).then(
+                                  (value) async => await Navigator.of(context)
+                                          .push(MaterialPageRoute(
+                                              builder: (BuildContext context) {
+                                        return Preview_view(path);
+                                      })));
                             } catch (e) {
-                              // If an error occurs, log the error to the console.
                               print(e);
                             }
                           },
                           child: Container(
                             child: Container(
                               decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: Color.fromARGB(255, 90, 49, 244),
                                 borderRadius: BorderRadius.all(
-                                  Radius.circular(25),
+                                  Radius.circular(45),
                                 ),
                               ),
                             ),
-                            height: 70,
-                            width: 70,
+                            height: 100,
+                            width: 100,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.all(
-                                Radius.circular(35),
+                                Radius.circular(105),
                               ),
                               border: Border.all(
-                                width: 10,
-                                color: Colors.white.withOpacity(.5),
+                                width: 20,
+                                color: Colors.black.withOpacity(.45),
                               ),
                             ),
-                          ),
-                        ),
-                        Container(
-                          height: widget.iconHeight,
-                          child: Icon(
-                            Icons.cached,
-                            color: Colors.white,
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            _navigationService.navigateTo(HomeViewRoute);
-                          },
-                          child: Icon(
-                            Icons.tag_faces,
-                            color: Colors.white,
                           ),
                         ),
                       ],
                     ),
                   ),
-                  Positioned(
-                    right: 0,
-                    left: 0,
-                    bottom: 10,
-                    height: 20,
-                    child: PageView.builder(
-                      controller: widget.bottomPageController,
-                      itemBuilder: (context, index) {
-                        return Text(
-                          "Item $index",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white),
-                        );
-                      },
-                      itemCount: 20,
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 5,
-                    width: 10,
-                    height: 10,
-                    child: Icon(
-                      Icons.arrow_drop_up,
-                      color: Colors.white,
-                    ),
-                  )
                 ],
               ),
             ),

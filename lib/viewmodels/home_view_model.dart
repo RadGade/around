@@ -24,7 +24,7 @@ class HomeViewModel extends BaseModel {
     setBusy(false);
     await postsResults.listen((List<DocumentSnapshot> documentList) {
       documentList.forEach((DocumentSnapshot doc) {
-        String posturl = doc.data['url'];
+        String posturl = doc.data()['url'];
         _posts.add(posturl);
         notifyListeners();
         print(_posts);

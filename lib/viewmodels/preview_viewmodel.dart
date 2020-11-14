@@ -32,26 +32,17 @@ class CreatePostViewModel extends BaseModel {
     }
   }
 
-  Future addPost({@required String title}) async {
+  Future addPost() async {
     setBusy(true);
 
     CloudStorageResult storageResult;
+    storageResult = await _cloudStorageService.uploadImage(
+      imageToUpload: _selectedImage,
+    );
 
-    if (!_editting) {
-      storageResult = await _cloudStorageService.uploadImage(
-        imageToUpload: _selectedImage,
-        title: title,
-      );
-    }
-
-    var result;
-
-    if (!_editting) {
-      result = await _firestoreService.addPost(Post(
-        title: title,
-        imageUrl: storageResult.imageUrl,
-      ));
-    }
+    await _firestoreService.addPost(Post(
+      imageUrl: storageResult.imageUrl,
+    ));
 
     setBusy(false);
 

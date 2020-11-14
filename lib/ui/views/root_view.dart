@@ -55,7 +55,7 @@ class RootView extends StatelessWidget {
                 IconButton(
                   iconSize: 30.0,
                   padding: EdgeInsets.only(right: 28.0),
-                  icon: Icon(Icons.list),
+                  icon: Icon(Icons.account_box),
                   onPressed: () {
                     _myPage.jumpToPage(3);
                   },
