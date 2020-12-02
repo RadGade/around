@@ -5,6 +5,7 @@ import 'package:compound/services/navigation_service.dart';
 import 'package:compound/viewmodels/home_view_model.dart';
 import 'package:compound/viewmodels/root_viewmodel.dart';
 import 'package:flutter/material.dart';
+import '../../icons/iconly.dart';
 import 'package:compound/ui/views/home_view.dart';
 import 'package:stacked/stacked.dart';
 
@@ -31,7 +32,8 @@ class RootView extends StatelessWidget {
                 IconButton(
                   iconSize: 30.0,
                   padding: EdgeInsets.only(left: 28.0),
-                  icon: Icon(Icons.home),
+                  icon: Icon(Iconly.home),
+                  
                   onPressed: () {
                     _myPage.jumpToPage(0);
                   },
@@ -39,7 +41,7 @@ class RootView extends StatelessWidget {
                 IconButton(
                   iconSize: 30.0,
                   padding: EdgeInsets.only(right: 28.0),
-                  icon: Icon(Icons.search),
+                  icon: Icon(Iconly.search),
                   onPressed: () {
                     _myPage.jumpToPage(1);
                   },
@@ -47,7 +49,7 @@ class RootView extends StatelessWidget {
                 IconButton(
                   iconSize: 30.0,
                   padding: EdgeInsets.only(left: 28.0),
-                  icon: Icon(Icons.notifications),
+                  icon: Icon(Iconly.notification),
                   onPressed: () {
                     _myPage.jumpToPage(2);
                   },
@@ -55,7 +57,7 @@ class RootView extends StatelessWidget {
                 IconButton(
                   iconSize: 30.0,
                   padding: EdgeInsets.only(right: 28.0),
-                  icon: Icon(Icons.account_box),
+                  icon: Icon(Iconly.profile),
                   onPressed: () {
                     _myPage.jumpToPage(3);
                   },
@@ -98,8 +100,11 @@ class RootView extends StatelessWidget {
               onPressed: () {
                 _navigationService.navigateTo(CameraViewRoute);
               },
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              
+              backgroundColor: Color.fromARGB(255, 90, 49, 244),
               child: Icon(
-                Icons.add,
+                Iconly.camera,
                 color: Colors.white,
               ),
               // elevation: 5.0,

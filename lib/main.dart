@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:compound/ui/views/root_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -10,9 +11,11 @@ import 'locator.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 bool log = false;
+
+List<CameraDescription> cameras;
 void main() async {
   // Register all the models and services before the app starts
-
+  
   WidgetsFlutterBinding.ensureInitialized();
   setupLocator();
   await Firebase.initializeApp();
@@ -23,6 +26,7 @@ void main() async {
       print(user);
     }
   });
+  cameras = await availableCameras();
   runApp(MyApp());
 }
 
