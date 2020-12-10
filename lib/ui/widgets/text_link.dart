@@ -11,7 +11,7 @@ class TextLink extends StatelessWidget {
       onTap: onPressed,
       child: Text(
         text,
-        style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
+        style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: Colors.white),
       ),
     );
   }
