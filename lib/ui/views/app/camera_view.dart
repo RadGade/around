@@ -1,6 +1,6 @@
 import 'package:compound/constants/route_names.dart';
 import 'package:compound/services/navigation_service.dart';
-import 'package:compound/ui/views/preview_view.dart';
+import 'package:compound/ui/views/app/preview_view.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:compound/viewmodels/camera_model.dart';
@@ -10,7 +10,7 @@ import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 
-import '../../locator.dart';
+import '../../../locator.dart';
 
 class CameraView extends StatefulWidget {
   CameraView({Key key, this.controller}) : super(key: key);

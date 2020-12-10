@@ -1,5 +1,5 @@
 import 'package:compound/ui/shared/ui_helpers.dart';
-import 'package:compound/ui/views/post_view.dart';
+import 'package:compound/ui/views/app/post_view.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:compound/viewmodels/home_view_model.dart';

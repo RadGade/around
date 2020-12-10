@@ -5,8 +5,8 @@ import 'package:compound/services/navigation_service.dart';
 import 'package:compound/viewmodels/home_view_model.dart';
 import 'package:compound/viewmodels/root_viewmodel.dart';
 import 'package:flutter/material.dart';
-import '../../icons/iconly.dart';
-import 'package:compound/ui/views/home_view.dart';
+import '../../../icons/iconly.dart';
+import 'package:compound/ui/views/app/home_view.dart';
 import 'package:stacked/stacked.dart';
 
 import 'camera_view.dart';
