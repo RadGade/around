@@ -1,4 +1,4 @@
-import 'dart:html';
+
 import 'package:compound/viewmodels/root_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -21,7 +21,6 @@ class _SignupViewState extends State<SignUpView> {
   }
 
   PageController _myPage;
-  PermissionStatus _permissionStatus;
   int currentIndex = 0;
   onChangedFunction(int index) {
     setState(() {

@@ -33,10 +33,10 @@ dependencies:
   # provider
   provider: ^4.1.3
   # Stacked Arch
+  injectable: ^1.0.5
   transparent_image:
+  flutter_svg: ^0.19.2+1
   flutter_holo_date_picker: ^0.3.0
-  permission_handler: ^5.0.1+1
-  shared_preferences: ^0.5.12+4
   flutter_staggered_grid_view:
   animations: ^1.1.2
   stacked: ^1.7.1
@@ -53,6 +53,9 @@ dependencies:
   camera:
   path_provider:
 dev_dependencies:
+  injectable_generator:
+  # of course build_runner is needed to run the generator
+  build_runner:
   flutter_launcher_icons: "^0.8.0"
   flutter_test:
     sdk: flutter
@@ -75,7 +78,8 @@ flutter:
   assets:
     - assets/images/title.png
     - assets/images/Logo.png
-    - assets/images/Logo.png
+    - assets/images/toplogo.svg
+    - assets/images/top.png
     - assets/images/authflow_asset.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -112,6 +116,13 @@ flutter:
           weight: 300
         - asset: assets/fonts/OpenSans-Regular.ttf
           weight: 400
+
+    - family: Gilroy
+      fonts:
+        - asset: assets/fonts/Gilroy-ExtraBold.otf
+          weight: 800
+        - asset: assets/fonts/Gilroy-Light.otf
+          weight: 300
 
     - family: Iconly
       fonts:

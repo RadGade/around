@@ -64,6 +64,8 @@ class GeoFirestoreService {
           .collection(collectionRef: ref)
           .within(center: center, radius: radius, field: 'position');
 
+
+
       return stream;
     } catch (e) {
       // TODO: Find or create a way to repeat error handling without so much repeated code

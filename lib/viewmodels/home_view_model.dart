@@ -7,8 +7,9 @@ import 'package:compound/services/firestore_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:compound/services/navigation_service.dart';
 import 'package:compound/viewmodels/base_model.dart';
+import 'package:stacked/stacked.dart';
 
-class HomeViewModel extends BaseModel {
+class HomeViewModel extends FutureViewModel {
   // final NavigationService _navigationService = locator<NavigationService>();
   final GeoFirestoreService _geofirestoreService =
       locator<GeoFirestoreService>();
@@ -18,7 +19,7 @@ class HomeViewModel extends BaseModel {
   List _posts = [];
   List get posts => _posts;
 
-  void listenToPosts() async {
+ futureToRun() async {
     setBusy(true);
     var postsResults = await _geofirestoreService.getPostsOnceOff();
     setBusy(false);
@@ -27,9 +28,9 @@ class HomeViewModel extends BaseModel {
         String posturl = doc.data()['url'];
         _posts.add(posturl);
         notifyListeners();
-        print(_posts);
       });
     });
+    print(posts);
   }
 }
 
