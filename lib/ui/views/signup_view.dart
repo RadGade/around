@@ -1,6 +1,7 @@
-
 import 'package:compound/viewmodels/root_viewmodel.dart';
+import 'package:compound/viewmodels/signup_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:stacked/stacked.dart';
 import 'signup_flow/accept_permission.dart';
 import 'signup_flow/birthdate_view.dart';
@@ -22,6 +23,10 @@ class _SignupViewState extends State<SignUpView> {
 
   PageController _myPage;
   int currentIndex = 0;
+  String email = "";
+  DateTime birthday;
+  String username = "";
+  String password = "";
   onChangedFunction(int index) {
     setState(() {
       currentIndex = index;
@@ -35,42 +40,69 @@ class _SignupViewState extends State<SignUpView> {
     _myPage.nextPage(duration: _kDuration, curve: _kCurve);
   }
 
-    void getFuncForIndex(int index) {
+  void getFuncForIndex(int index) {
     switch (index) {
       case 0:
-        void _askPermission() {
-          
+        {
+          String data = "something";
+          print(data);
         }
-        return ;
+        break;
       case 1:
-        return print(1);
+        {
+          print(email);
+        }
+        break;
       case 2:
-        return print(2);
+        {
+          print(birthday);
+        }
+        break;
       case 3:
-        return print(3);
+        {
+          print(username);
+        }
+        break;
       case 4:
-        return print(4);
+        {
+          print(password);
+        }
+        break;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    
-    return ViewModelBuilder<RootViewModel>.reactive(
+    return ViewModelBuilder<SignUpViewModel>.reactive(
       builder: (context, model, child) => Stack(
         children: <Widget>[
           PageView(
             controller: _myPage,
-            physics:new NeverScrollableScrollPhysics(),
+            physics: new NeverScrollableScrollPhysics(),
             onPageChanged: onChangedFunction,
             children: <Widget>[
               Accept_Permission(),
-              Email_View(),
-              Birthdate_View(),
-              Username_View(),
-              Password_View()
+              Email_View(
+                onEmailChanged: (String newEmail) {
+                  email = newEmail;
+                },
+              ),
+              Birthdate_View(
+                onBirthdayChanged: (DateTime newDate) {
+                  birthday = newDate;
+                },
+              ),
+              Username_View(
+                onUsernameChanged: (String newUsername) {
+                  username = newUsername;
+                },
+              ),
+              Password_View(
+                onPasswordChanged: (String newPassword) {
+                  password = newPassword;
+                },
+              )
             ],
-            
           ),
           Align(
             alignment: Alignment.bottomCenter,
@@ -105,8 +137,25 @@ class _SignupViewState extends State<SignUpView> {
                               style: BorderStyle.solid),
                           borderRadius: BorderRadius.circular(10)),
                       onPressed: () {
-                        getFuncForIndex(currentIndex);
-                        nextFunction();
+                        (() async {
+                          if (currentIndex == 4) {
+                            model.signUp(email: email, password: password, username: username, birthday: birthday);
+                            
+                          } else if (currentIndex == 0) {
+                            Map<Permission, PermissionStatus> statuses = await [
+                              Permission.location,
+                              Permission.storage,
+                              Permission.camera,
+                              Permission.notification,
+                              Permission.sensors
+                              
+                            ].request();
+                            print(statuses[Permission.location]);
+                            nextFunction();
+                          }
+
+                          return nextFunction();
+                        })();
                       },
                     ),
                   ),
@@ -114,7 +163,7 @@ class _SignupViewState extends State<SignUpView> {
           )
         ],
       ),
-      viewModelBuilder: () => RootViewModel(),
+      viewModelBuilder: () => SignUpViewModel(),
     );
   }
 

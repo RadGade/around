@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/post_model.dart';
+import '../models/user_model.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:flutter/services.dart';
 import 'package:location/location.dart';
@@ -36,10 +37,10 @@ class GeoFirestoreService {
     return _postsCollectionReference.add(post.toMap());
   }
 
-  Future createUser(User user) async {
+  Future createUser(newUser user) async {
     try {
       // ignore: deprecated_member_use
-      await _usersCollectionReference.document(user.uid);
+      await _usersCollectionReference.document(user.id).setData(user.toJson());
     } catch (e) {
       return e.message;
     }
@@ -76,6 +77,8 @@ class GeoFirestoreService {
       return e.toString();
     }
   }
+
+  
 
   // Future listenToPostsRealTime() async {
 

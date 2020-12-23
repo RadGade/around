@@ -9,10 +9,18 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:compound/viewmodels/signup_view_model.dart';
 
+
+typedef void EmailCallback(String email);
+
 class Email_View extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final NavigationService _navigationService = locator<NavigationService>();
+
+ final EmailCallback onEmailChanged;
+  Email_View({ @required this.onEmailChanged });
+
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SignUpViewModel>.reactive(
@@ -36,7 +44,7 @@ class Email_View extends StatelessWidget {
                 elevation: 0.0,
               ),
               body: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 50),
+                padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -61,6 +69,10 @@ class Email_View extends StatelessWidget {
               InputField(
                 placeholder: 'Email',
                 controller: emailController,
+                onChanged: (text) {
+                    onEmailChanged(text);
+  }
+                ,
               ),
                   ],
                 ),
