@@ -9,10 +9,14 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:compound/viewmodels/signup_view_model.dart';
 
+typedef void PasswordCallback(String password);
+
 class Password_View extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final NavigationService _navigationService = locator<NavigationService>();
+   final PasswordCallback onPasswordChanged;
+  Password_View({ @required this.onPasswordChanged });
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SignUpViewModel>.reactive(
@@ -62,6 +66,10 @@ class Password_View extends StatelessWidget {
                 placeholder: 'Password',
                                 password: true,
                 controller: passwordController,
+                onChanged: (text) {
+                    onPasswordChanged(text);
+  }
+                ,
               ),
 
                   ],

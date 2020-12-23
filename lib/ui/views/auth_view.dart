@@ -89,13 +89,6 @@ class AuthView extends StatelessWidget {
                     ),
                   ],
                 ),
-                // verticalSpaceMedium,
-                // TextLink(
-                //   'Create an Account if you\'re new.',
-                //   onPressed: () {
-                //     _navigationService.navigateTo(SignUpViewRoute);
-                //   },
-                // )
               ],
             ),
           )),
