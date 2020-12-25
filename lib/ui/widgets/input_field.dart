@@ -1,3 +1,4 @@
+import 'package:compound/icons/iconly.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:compound/ui/shared/shared_styles.dart';
@@ -99,11 +100,11 @@ class _InputFieldState extends State<InputField> {
                 child: widget.password
                     ? Container(
                         width: fieldHeight,
-                        height: fieldHeight,
+                        height: fieldHeight,  
                         alignment: Alignment.center,
                         child: Icon(isPassword
-                            ? Icons.visibility
-                            : Icons.visibility_off))
+                            ? Iconly.show
+                            : Iconly.hide))
                     : Container(),
               ),
             ],
@@ -115,7 +116,7 @@ class _InputFieldState extends State<InputField> {
             color: Colors.red,
           ),
         if (widget.additionalNote != null) verticalSpace(5),
-        if (widget.additionalNote != null) NoteText(widget.additionalNote),
+        if (widget.additionalNote != null) NoteText(widget.additionalNote, color: Colors.white,),
         verticalSpaceSmall
       ],
     );

@@ -1,24 +1,86 @@
 import 'dart:io';
 import 'package:camera/camera.dart';
-import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+ 
+class CameraService {
 
-abstract class CameraService {
+  String videoPath;
   CameraController controller;
+  Function showMessage;
 
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    // App state changed before we got the chance to initialize.
-    if (controller == null || !controller.value.isInitialized) {
-      return;
+  CameraService({this.controller, this.showMessage});
+
+  Future<String> startVideoRecording() async {
+    if (!controller.value.isInitialized) {
+      showMessage('Error: select a camera first.');
+      return null;
     }
-    if (state == AppLifecycleState.inactive) {
-      controller?.dispose();
-    } else if (state == AppLifecycleState.resumed) {
-      if (controller != null) {
-        onNewCameraSelected(controller.description);
-      }
+    String timestamp() => DateTime.now().millisecondsSinceEpoch.toString();
+    final Directory extDir = await getApplicationDocumentsDirectory();
+    final String dirPath = '${extDir.path}/Movies/';
+    await Directory(dirPath).create(recursive: true);
+    final String filePath = '$dirPath/${timestamp()}.mp4';
+
+    if (controller.value.isRecordingVideo) {
+      return null;
+    }
+
+    try {
+      videoPath = filePath;
+      await controller.startVideoRecording(filePath);
+      showMessage('Video recorded to: $videoPath');
+
+    } on CameraException catch (e) {
+      _showCameraException(e);
+      return null;
+    }
+    return filePath;
+  }
+
+  Future<void> stopVideoRecording() async {
+    if (!controller.value.isRecordingVideo) {
+      return null;
+    }
+
+    try {
+      await controller.stopVideoRecording();
+    } on CameraException catch (e) {
+      _showCameraException(e);
+      return null;
     }
   }
 
-  void onNewCameraSelected(CameraDescription description) {}
+  Future<void> pauseVideoRecording() async {
+    if (!controller.value.isRecordingVideo) {
+      return null;
+    }
+
+    try {
+      await controller.pauseVideoRecording();
+    } on CameraException catch (e) {
+      _showCameraException(e);
+      rethrow;
+    }
+  }
+
+  Future<void> resumeVideoRecording() async {
+    if (!controller.value.isRecordingVideo) {
+      return null;
+    }
+
+    try {
+      await controller.resumeVideoRecording();
+    } on CameraException catch (e) {
+      _showCameraException(e);
+      rethrow;
+    }
+  }
+
+  void _showCameraException(CameraException e) {
+    logError(e.code, e.description);
+    showMessage('Error: ${e.code}\n${e.description}');
+  }
+
+  void logError(String code, String message) =>
+      print('Error: $code\nError Message: $message');
 }
