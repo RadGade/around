@@ -10,10 +10,15 @@ import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
 import 'package:stacked/stacked.dart';
 import 'package:compound/viewmodels/signup_view_model.dart';
 
+typedef void BirthdayCallback(DateTime date);
+
 class Birthdate_View extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final NavigationService _navigationService = locator<NavigationService>();
+
+   final BirthdayCallback onBirthdayChanged;
+  Birthdate_View({ @required this.onBirthdayChanged});
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SignUpViewModel>.reactive(
@@ -37,7 +42,7 @@ class Birthdate_View extends StatelessWidget {
                 elevation: 0.0,
               ),
               body: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 50),
+                padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -48,7 +53,8 @@ class Birthdate_View extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "What’s your birthday?",
+                          '''What’s your 
+  birthday?''',
                           textScaleFactor: 2.5,
                           style: TextStyle(
                             color: Colors.white,
@@ -63,8 +69,13 @@ DatePickerWidget(
       looping: false, // default is not looping
       firstDate: DateTime(1990, 01, 01),
       lastDate: DateTime(2030, 1, 1),
-      initialDate: DateTime(1991, 10, 12),
+      initialDate: DateTime(1991, 10, 12),  
       dateFormat: "dd-MMM-yyyy",
+       onChange: (DateTime newDate, _) {
+                
+                onBirthdayChanged(newDate);
+            //    _selectedDate = newDate;
+              },
       locale: DatePicker.localeFromString('en'),
       // onChange: (DateTime newDate, _) => _selectedDate = newDate,
       pickerTheme: DateTimePickerTheme(
