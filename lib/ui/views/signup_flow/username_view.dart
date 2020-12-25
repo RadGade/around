@@ -9,10 +9,16 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:compound/viewmodels/signup_view_model.dart';
 
+typedef void UsernameCallback(String username);
+
 class Username_View extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final NavigationService _navigationService = locator<NavigationService>();
+
+
+ final UsernameCallback onUsernameChanged;
+  Username_View({ @required this.onUsernameChanged });
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SignUpViewModel>.reactive(
@@ -61,6 +67,10 @@ class Username_View extends StatelessWidget {
               InputField(
                 placeholder: 'Username',
                 controller: emailController,
+                onChanged: (text) {
+                    onUsernameChanged(text);
+  }
+                ,
               ),
 
                   ],
