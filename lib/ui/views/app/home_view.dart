@@ -57,14 +57,20 @@ class HomeView extends StatelessWidget {
                                                 left: 5, right: 15),
                                             child: SvgPicture.asset(
                                                 "assets/images/toplogo.svg")),
-                                        Text(
-                                          "around",
-                                          textScaleFactor: 1.5,
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontFamily: "Gilroy",
-                                            fontWeight: FontWeight.w800,
+                                              
+                                        GestureDetector(
+                                                                                  child: Text(
+                                            "around",
+                                            textScaleFactor: 1.5,
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: "Gilroy",
+                                              fontWeight: FontWeight.w800,
+                                            ),
                                           ),
+                                          onTap: (){
+                                            model.posts;
+                                          },
                                         ),
                                       ],
                                     );

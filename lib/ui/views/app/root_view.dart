@@ -2,6 +2,7 @@ import 'package:animations/animations.dart';
 import 'package:compound/constants/route_names.dart';
 import 'package:compound/locator.dart';
 import 'package:compound/services/navigation_service.dart';
+import 'package:compound/ui/views/app/collection_view.dart';
 import 'package:compound/viewmodels/home_view_model.dart';
 import 'package:compound/viewmodels/root_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,9 @@ import '../../../icons/iconly.dart';
 import 'package:compound/ui/views/app/home_view.dart';
 import 'package:stacked/stacked.dart';
 
+import 'account_view.dart';
 import 'camera_view.dart';
+import 'notification_view.dart';
 
 class RootView extends StatefulWidget {
   @override
@@ -28,10 +31,11 @@ class _RootState extends State<RootView> {
       builder: (context, model, child) =>
           NotificationListener<ScrollUpdateNotification>(
         onNotification: (notification) {
-          print(notification.metrics.axisDirection);
-          print(notification.metrics.axis);
-
-          if (notification.scrollDelta.sign == 1) {
+          if (notification.metrics.axis == Axis.horizontal) {
+            setState(() {
+              yTransValue = 0;
+            });
+          } else if (notification.scrollDelta.sign == 1) {
             setState(() {
               yTransValue = 100;
             });
@@ -69,12 +73,12 @@ class _RootState extends State<RootView> {
                         icon: Icon(
                           Iconly.home,
                           color: (() {
-                          if (tab == "home") {
-                            return Colors.black;
-                          }
+                            if (tab == "home") {
+                              return Colors.black;
+                            }
 
-                          return Colors.grey;
-                        })(),
+                            return Colors.grey;
+                          })(),
                         ),
                         onPressed: () {
                           _myPage.jumpToPage(0);
@@ -86,13 +90,15 @@ class _RootState extends State<RootView> {
                       IconButton(
                         iconSize: 25.0,
                         padding: EdgeInsets.only(right: 28.0),
-                        icon: Icon(Iconly.category, color: (() {
-                          if (tab == "category") {
-                            return Colors.black;
-                          }
+                        icon: Icon(
+                          Iconly.bookmark,
+                          color: (() {
+                            if (tab == "category") {
+                              return Colors.black;
+                            }
 
-                          return Colors.grey;
-                        })(),
+                            return Colors.grey;
+                          })(),
                         ),
                         onPressed: () {
                           _myPage.jumpToPage(1);
@@ -104,13 +110,16 @@ class _RootState extends State<RootView> {
                       IconButton(
                         iconSize: 25.0,
                         padding: EdgeInsets.only(left: 28.0),
-                        icon: Icon(Iconly.notification, color: (() {
-                          if (tab == "notification") {
-                            return Colors.black;
-                          }
+                        icon: Icon(
+                          Iconly.notification,
+                          color: (() {
+                            if (tab == "notification") {
+                              return Colors.black;
+                            }
 
-                          return Colors.grey;
-                        })(),),
+                            return Colors.grey;
+                          })(),
+                        ),
                         onPressed: () {
                           _myPage.jumpToPage(2);
                           setState(() {
@@ -121,13 +130,16 @@ class _RootState extends State<RootView> {
                       IconButton(
                         iconSize: 25.0,
                         padding: EdgeInsets.only(right: 28.0),
-                        icon: Icon(Iconly.profile,color: (() {
-                          if (tab == "profile") {
-                            return Colors.black;
-                          }
+                        icon: Icon(
+                          Iconly.profile,
+                          color: (() {
+                            if (tab == "profile") {
+                              return Colors.black;
+                            }
 
-                          return Colors.grey;
-                        })(),),
+                            return Colors.grey;
+                          })(),
+                        ),
                         onPressed: () {
                           _myPage.jumpToPage(3);
                           setState(() {
@@ -144,26 +156,47 @@ class _RootState extends State<RootView> {
           body: PageView(
             controller: _myPage,
             onPageChanged: (int) {
+              switch (int) {
+                case 0:
+                  {
+                    setState(() {
+                      tab = "home";
+                    });
+                  }
+                  break;
+
+                case 1:
+                  {
+                    setState(() {
+                      tab = "category";
+                    });
+                  }
+                  break;
+
+                case 2:
+                  {
+                    setState(() {
+                      tab = "notification";
+                    });
+                  }
+                  break;
+                case 3:
+                  {
+                    setState(() {
+                      tab = "profile";
+                    });
+                  }
+                  break;
+              }
               print('Page Changes to index $int');
             },
             children: <Widget>[
               HomeView(),
-              Center(
-                child: Container(
-                  child: Text('Empty Body 1'),
-                ),
-              ),
-              Center(
-                child: Container(
-                  child: Text('Empty Body 2'),
-                ),
-              ),
-              Center(
-                child: Container(
-                  child: Text('Empty Body 3'),
-                ),
-              )
+              CollectionView(),
+              NotificationView(),
+              AccountView(),
             ],
+
 // Comment this if you need to use Swipe.
           ),
           floatingActionButton: AnimatedContainer(
@@ -193,6 +226,4 @@ class _RootState extends State<RootView> {
       viewModelBuilder: () => RootViewModel(),
     );
   }
-
-  
 }
