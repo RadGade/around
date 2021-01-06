@@ -36,7 +36,7 @@ dependencies:
   # Stacked Arch
   injectable: ^1.0.5
   transparent_image:
-  flutter_svg: ^0.19.2+1
+  flutter_svg: 
   flutter_holo_date_picker: ^0.3.0
   flutter_staggered_grid_view:
   animations: ^1.1.2
@@ -45,6 +45,7 @@ dependencies:
   firebase_auth: ^0.18.1+2
   cloud_firestore:
   location:
+  flutter_swiper: ^1.1.6
   geoflutterfire:
   firebase_storage:
   firebase_core : "^0.5.0+1"

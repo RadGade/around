@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
             builder: (context) => DialogManager(child: child)),
       ),
       navigatorKey: locator<NavigationService>().navigationKey,
-        home: AuthView(),
+        home: log ? RootView() : AuthView(),
       onGenerateRoute: generateRoute,
     );
   }
