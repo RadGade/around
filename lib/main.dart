@@ -12,7 +12,7 @@ import 'ui/views/auth_view.dart';
 import 'ui/views/app/root_view.dart';
 import 'ui/views/startup_view.dart';
 
-List<CameraDescription> cameras;
+
 
 bool log = false;
 void main() async {
@@ -27,8 +27,6 @@ void main() async {
       print(user);
     }
   });
-  cameras = await availableCameras();
-  
   runApp(MyApp());
 }
 
