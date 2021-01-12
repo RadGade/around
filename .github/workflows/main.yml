@@ -1,3 +1,9 @@
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the main branch
+  push:
+    branches:
+      - main
 steps:
 - uses: actions/checkout@v2
 - uses: actions/setup-java@v1
