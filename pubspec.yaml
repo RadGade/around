@@ -27,7 +27,7 @@ dependencies:
   # http request
   http: ^0.12.1
   # async package to add additional Cancellable operations
-  async: ^2.4.1
+  async:
   # get it
   beauty_textfield: ^0.0.1
   # provider
