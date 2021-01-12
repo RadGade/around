@@ -9,7 +9,7 @@ import '../../../icons/iconly.dart';
 import 'package:compound/ui/views/app/home_view.dart';
 import 'package:stacked/stacked.dart';
 
-import 'camera_view.dart';
+import 'camera/camera_view.dart';
 
 class RootView extends StatefulWidget {
   @override

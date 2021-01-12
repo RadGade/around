@@ -1,4 +1,4 @@
-import 'package:compound/ui/views/app/camera_view.dart';
+import 'package:compound/ui/views/app/camera/camera_view.dart';
 import 'package:compound/ui/views/app/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:compound/constants/route_names.dart';
