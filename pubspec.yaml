@@ -32,8 +32,10 @@ dependencies:
   beauty_textfield: ^0.0.1
   # provider
   provider: ^4.1.3
+  camera:
   permission_handler:
   # Stacked Arch
+  cached_network_image:
   injectable: ^1.0.5
   transparent_image:
   flutter_svg: 
@@ -52,7 +54,6 @@ dependencies:
   video_player: ^0.10.0
   e2e: "^0.2.0"
   get_it:
-  camera:
   path_provider:
 dev_dependencies:
   injectable_generator:
@@ -130,6 +131,9 @@ flutter:
       fonts:
         - asset: assets/fonts/Iconly.ttf
 
+    - family: TikTokIcons
+      fonts:
+          - asset: assets/fonts/TikTokIcons.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages

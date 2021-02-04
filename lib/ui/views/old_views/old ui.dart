@@ -124,7 +124,7 @@ class CameraViewState extends State<CameraView> {
                                 '${DateTime.now()}.png',
                               );
                               print(path);
-                              await _controller.takePicture(path).then(
+                              await _controller.takePicture().then(
                                   (value) async => await Navigator.of(context)
                                           .push(MaterialPageRoute(
                                               builder: (BuildContext context) {

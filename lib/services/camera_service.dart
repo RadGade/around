@@ -27,7 +27,7 @@ class CameraService {
 
     try {
       videoPath = filePath;
-      await controller.startVideoRecording(filePath);
+      await controller.startVideoRecording();
       showMessage('Video recorded to: $videoPath');
 
     } on CameraException catch (e) {
