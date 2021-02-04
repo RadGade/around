@@ -1,4 +1,5 @@
 import 'package:compound/icons/iconly.dart';
+import 'package:compound/ui/shared/ui_helpers.dart';
 import 'package:compound/ui/views/app/post_view.dart';
 import 'package:compound/viewmodels/home_view_model.dart';
 import 'package:flutter/material.dart';
@@ -96,13 +97,34 @@ class _NotificationViewState extends State<NotificationView> {
      elevation: 5,
      
      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(2)),
-    gradient: LinearGradient(
-      begin: Alignment.centerLeft,
-      end: Alignment.centerRight,
-      colors: [Colors.orange, Colors.pink])
-  ),
+        color: Colors.white10,
+
+       child:Row(
+         children: <Widget>[
+           horizontalSpaceTiny,
+           Column(
+             mainAxisAlignment: MainAxisAlignment.center,
+             children: [
+
+               Container(
+                 height: 50,
+                 width: 50,
+                 color: Colors.amberAccent,
+               )
+             ],
+           ),
+           Column(
+             mainAxisAlignment: MainAxisAlignment.center,
+             children: <Widget>[
+               Container(
+                 padding: EdgeInsets.only(left: 10),
+                 height: 20,
+                 child: Text("Childish_Gambino followed you"),
+               )
+             ],
+           ),
+         ],
+       ),
      ),
    )),
    Container(

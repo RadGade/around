@@ -76,7 +76,7 @@ class _AccountViewState extends State<AccountView> {
                             margin: EdgeInsets.only(right: 15.0),
                             child: IconButton(
                               icon: Icon(
-                                Iconly.add_user,
+                                Iconly.setting,
                                 color: Colors.white,
                               ),
                             ),
@@ -111,6 +111,7 @@ class _AccountViewState extends State<AccountView> {
                                 ],
                               ),
                               Column(
+
                                 children: [
                                   Container(
                                     margin:
@@ -119,12 +120,14 @@ class _AccountViewState extends State<AccountView> {
                                         color: Colors.white,
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(5))),
-                                    height: 40,
+                                    height: 55,
                                     width: 220,
                                     child: Row(
                                      mainAxisAlignment: MainAxisAlignment.center,
+
                                       children: [
                                         Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
                                           
                                             Text("Posts"),
@@ -136,6 +139,7 @@ class _AccountViewState extends State<AccountView> {
                                         ),
                                          horizontalSpaceMedium,
                                          Column(
+                                           mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
                                             Text("Likes"),
                                             SizedBox(
@@ -146,6 +150,7 @@ class _AccountViewState extends State<AccountView> {
                                         ),
                                         horizontalSpaceMedium,
                                         Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
                                             Text("Freinds"),
                                             SizedBox(
