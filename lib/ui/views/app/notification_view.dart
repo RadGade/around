@@ -52,7 +52,7 @@ class _NotificationViewState extends State<NotificationView> {
                         ),
                       ),
         body: model.isBusy
-            ? Center(
+            ? Center( 
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
@@ -70,189 +70,45 @@ class _NotificationViewState extends State<NotificationView> {
            ListView(
              padding: const EdgeInsets.all(8),
   children: <Widget>[
-   Container(
-   padding: EdgeInsets.fromLTRB(10,10,10,0),
-   height: 80,
-   width: double.maxFinite,
-   
-   child: Card(
-     elevation: 5,
-     
-     child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(2)),
-    gradient: LinearGradient(
-      begin: Alignment.centerLeft,
-      end: Alignment.centerRight,
-      colors: [Colors.yellow, Colors.orange])
-  ),
-     ),
-   )),
-   Container(
-   padding: EdgeInsets.fromLTRB(10,10,10,0),
-   height:80,
-   width: double.maxFinite,
-   
-   child: Card(
-     elevation: 5,
-     
-     child: Container(
-        color: Colors.white10,
+    Container(
+        padding: EdgeInsets.fromLTRB(10,10,10,0),
+        height:80,
+        width: double.maxFinite,
 
-       child:Row(
-         children: <Widget>[
-           horizontalSpaceTiny,
-           Column(
-             mainAxisAlignment: MainAxisAlignment.center,
-             children: [
+        child: Card(
+          elevation: 5,
 
-               Container(
-                 height: 50,
-                 width: 50,
-                 color: Colors.amberAccent,
-               )
-             ],
-           ),
-           Column(
-             mainAxisAlignment: MainAxisAlignment.center,
-             children: <Widget>[
-               Container(
-                 padding: EdgeInsets.only(left: 10),
-                 height: 20,
-                 child: Text("Childish_Gambino followed you"),
-               )
-             ],
-           ),
-         ],
-       ),
-     ),
-   )),
-   Container(
-   padding: EdgeInsets.fromLTRB(10,10,10,0),
-   height: 80,
-   width: double.maxFinite,
-   
-   child: Card(
-     elevation: 5,
-     
-     child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(2)),
-    gradient: LinearGradient(
-      begin: Alignment.centerLeft,
-      end: Alignment.centerRight,
-      colors: [Colors.purple, Colors.blue])
-  ),
-     ),
-   )),
-      Container(
-   padding: EdgeInsets.fromLTRB(10,10,10,0),
-   height: 80,
-   width: double.maxFinite,
-   
-   child: Card(
-     elevation: 5,
-     
-     child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(2)),
-    gradient: LinearGradient(
-      begin: Alignment.centerLeft,
-      end: Alignment.centerRight,
-      colors: [Colors.yellow, Colors.orange])
-  ),
-     ),
-   )),
-   Container(
-   padding: EdgeInsets.fromLTRB(10,10,10,0),
-   height:80,
-   width: double.maxFinite,
-   
-   child: Card(
-     elevation: 5,
-     
-     child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(2)),
-    gradient: LinearGradient(
-      begin: Alignment.centerLeft,
-      end: Alignment.centerRight,
-      colors: [Colors.orange, Colors.pink])
-  ),
-     ),
-   )),
-   Container(
-   padding: EdgeInsets.fromLTRB(10,10,10,0),
-   height: 80,
-   width: double.maxFinite,
-   
-   child: Card(
-     elevation: 5,
-     
-     child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(2)),
-    gradient: LinearGradient(
-      begin: Alignment.centerLeft,
-      end: Alignment.centerRight,
-      colors: [Colors.purple, Colors.blue])
-  ),
-     ),
-   )),
-      Container(
-   padding: EdgeInsets.fromLTRB(10,10,10,0),
-   height: 80,
-   width: double.maxFinite,
-   
-   child: Card(
-     elevation: 5,
-     
-     child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(2)),
-    gradient: LinearGradient(
-      begin: Alignment.centerLeft,
-      end: Alignment.centerRight,
-      colors: [Colors.yellow, Colors.orange])
-  ),
-     ),
-   )),
-   Container(
-   padding: EdgeInsets.fromLTRB(10,10,10,0),
-   height:80,
-   width: double.maxFinite,
-   
-   child: Card(
-     elevation: 5,
-     
-     child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(2)),
-    gradient: LinearGradient(
-      begin: Alignment.centerLeft,
-      end: Alignment.centerRight,
-      colors: [Colors.orange, Colors.pink])
-  ),
-     ),
-   )),
-   Container(
-   padding: EdgeInsets.fromLTRB(10,10,10,0),
-   height: 80,
-   width: double.maxFinite,
-   
-   child: Card(
-     elevation: 5,
-     
-     child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(2)),
-    gradient: LinearGradient(
-      begin: Alignment.centerLeft,
-      end: Alignment.centerRight,
-      colors: [Colors.purple, Colors.blue])
-  ),
-     ),
-   )),
+          child: Container(
+            color: Colors.white10,
+
+            child:Row(
+              children: <Widget>[
+                horizontalSpaceTiny,
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+
+                    Container(
+                      height: 50,
+                      width: 50,
+                      color: Colors.amberAccent,
+                    )
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.only(left: 10),
+                      height: 20,
+                      child: Text("Childish_Gambino followed you"),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ),
+        )),
   ],
            )
 

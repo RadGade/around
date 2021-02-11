@@ -7,7 +7,7 @@ import 'package:compound/viewmodels/home_view_model.dart';
 import 'package:compound/viewmodels/root_viewmodel.dart';
 import 'package:flutter/material.dart';
 import '../../../icons/iconly.dart';
-import 'package:compound/ui/views/app/home_view.dart';
+import 'package:compound/ui/views/app/home_2.0.dart';
 import 'package:stacked/stacked.dart';
 
 import 'account_view.dart';
@@ -30,6 +30,7 @@ class _RootState extends State<RootView> {
     return ViewModelBuilder<RootViewModel>.reactive(
       builder: (context, model, child) =>
           NotificationListener<ScrollUpdateNotification>(
+        // ignore: missing_return
         onNotification: (notification) {
           if (notification.metrics.axis == Axis.horizontal) {
             setState(() {

@@ -30,7 +30,15 @@ class LoadingButtonState extends State<LoadingButton>
         setState(() {
           bigContainerRadius = bigContainerRadius == 80 ? 100 : 80;
           smallContainerRadius = smallContainerRadius == 70 ? 40 : 70;
-         
+
+        });
+      },
+      onVerticalDragStart: (DragStartDetails det) {
+        controller.forward();
+        setState(() {
+          bigContainerRadius = bigContainerRadius == 80 ? 100 : 80;
+          smallContainerRadius = smallContainerRadius == 70 ? 40 : 70;
+
         });
       },
       onLongPressEnd : (_) {
@@ -41,6 +49,15 @@ class LoadingButtonState extends State<LoadingButton>
           smallContainerRadius = smallContainerRadius == 40 ? 70 : 40;
          print("up");
         });
+        }},
+      onTap : () {
+        if (controller.status == AnimationStatus.forward) {
+          controller.reset();
+          setState(() {
+            bigContainerRadius = bigContainerRadius == 100 ? 80 : 100;
+            smallContainerRadius = smallContainerRadius == 40 ? 70 : 40;
+            print("up");
+          });
         }},
       child: Stack(
         alignment: Alignment.center,

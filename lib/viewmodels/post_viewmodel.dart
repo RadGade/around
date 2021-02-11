@@ -17,3 +17,5 @@ class PostViewModel extends BaseModel {
   File _selectedImage;
   File get selectedImage => _selectedImage;
 }
+
+
