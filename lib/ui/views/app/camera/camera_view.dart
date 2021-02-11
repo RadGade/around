@@ -2,6 +2,7 @@ import 'package:compound/constants/route_names.dart';
 import 'package:compound/icons/iconly.dart';
 import 'package:compound/locator.dart';
 import 'package:compound/services/navigation_service.dart';
+import 'package:compound/ui/shared/ui_helpers.dart';
 import 'package:compound/viewmodels/camera_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -36,9 +37,16 @@ class _CameraViewState extends State<CameraView> {
     final NavigationService _navigationService = locator<NavigationService>();
     return ViewModelBuilder<CameraViewModel>.reactive(
       builder: (context, model, child) => model.busy
-          ? CircularProgressIndicator(
+          ? Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation(Colors.purple[200]),
-            )
+            ),
+          ],
+        ),
+      )
           : Stack(children: [
               ZoomableWidget(
                   child: buildCameraView(model.controller, context),
@@ -53,7 +61,21 @@ class _CameraViewState extends State<CameraView> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+                    Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            _navigationService.navigateTo(RootViewRoute);
+                          },
+                          child: Icon(
+                            Iconly.star,
+                            color: Colors.white,
+                            size: 40.0,
+                          ),
+                        ),
+                      ],
+                    ),
                     Column(
                       children: [
                         Container(
@@ -61,7 +83,21 @@ class _CameraViewState extends State<CameraView> {
                             child: LoadingButton()),
                       ],
                     ),
-                    
+
+                    Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            ;
+                          },
+                          child: Icon(
+                            Iconly.logout,
+                            color: Colors.white,
+                            size: 40.0,
+                          ),
+                        ),
+                      ],
+                    )
                   ]),
                 ],
               ),

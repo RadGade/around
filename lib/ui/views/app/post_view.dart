@@ -1,6 +1,10 @@
+import 'package:compound/constants/route_names.dart';
 import 'package:compound/icons/iconly.dart';
+import 'package:compound/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/services.dart';
+import '../../../locator.dart';
 import './tik_tok_icons.dart';
 
 class Post_view extends StatelessWidget {
@@ -24,14 +28,15 @@ class Post_view extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+
               Text(
                 '@firstjonny',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
               ),
               Container(
                 height: 10.0,
               ),
-              Text('Video title and some other stuff'),
+              Text('Video title and some other stuff', style: TextStyle(color: Colors.white),),
               Container(
                 height: 10.0,
               ),
@@ -40,11 +45,11 @@ class Post_view extends StatelessWidget {
                 Container(
                   width: 10.0,
                 ),
-                Text('Artist name', style: TextStyle(fontSize: 12.0)),
+                Text('Artist name', style: TextStyle(fontSize: 12.0, color: Colors.white)),
                 Container(
                   width: 10.0,
                 ),
-                Text('Song name', style: TextStyle(fontSize: 12.0))
+                Text('Song name', style: TextStyle(fontSize: 12.0, color: Colors.white))
               ]),
               Container(
                 height: 12.0,
@@ -121,11 +126,12 @@ class Post_view extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final NavigationService _navigationService = locator<NavigationService>();
     return Scaffold(
       body: Container(
-
         child: Stack(
           children : <Widget>[
+
         Center(
                     child: Image.network(
                       path,
@@ -144,7 +150,22 @@ class Post_view extends StatelessWidget {
                 child: Container(height: 5.0, color: Colors.grey[600])),
 
           ],
-        ),])
+        ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Padding(padding: EdgeInsets.only(top: 30, left : 10), child: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Icon(
+                    Iconly.arrow___left,
+                    color: Colors.white,
+                    size: 40.0,
+                  ),
+                ),)
+              ],
+            ),])
       ),
     );
   }

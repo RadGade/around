@@ -1,5 +1,6 @@
 import 'package:compound/ui/views/app/camera/camera_view.dart';
-import 'package:compound/ui/views/app/home_view.dart';
+import 'package:compound/ui/views/app/home_2.0.dart';
+import 'package:compound/ui/views/app/nearby_freind.dart';
 import 'package:flutter/material.dart';
 import 'package:compound/constants/route_names.dart';
 import 'package:compound/ui/views/login_view.dart';
@@ -40,6 +41,12 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(
         routeName: settings.name,
         viewToShow: RootView(),
+      );
+
+    case NearbyViewRoute:
+      return _getPageRoute(
+        routeName: settings.name,
+        viewToShow: NearbyFriendView(),
       );
     default:
       return MaterialPageRoute(
